@@ -1,6 +1,6 @@
 const wrapperEl = document.getElementById('pos-wrapper')
 const url = 'https://api.airtable.com/v0'
-const posToken = 'patLkaQGaci95XsiP.3856171d1bcdcd1c788c364c20605239f3cf114daa5052055c4b92addf0ce8bd'
+const posToken = ${{ secrets.API_TOKEN }}
 const posBaseId = 'appnP2hrGHs3uGTQ1'
 const posTableId = 'tblfb53l2JHHJODli'
 
