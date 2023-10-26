@@ -97,6 +97,7 @@ function buildItem(item, wrapper){
     const resourceTopWrap = createElTag('div','resource-card-content_top','')
     const resourceImgWrap = createElTag('div','resource-image-wrapper','')
     const img = createImgTag('resource-image',name,src)
+    img.setAttribute('loading','lazy')
     const imgTextWrapper = createElTag('div','resource-image-text-wrapper','')
     const noImgText = createElTag('div','resource-image-message','No Image to Display')
     if(src){
