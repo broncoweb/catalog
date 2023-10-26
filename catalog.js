@@ -3,9 +3,7 @@ const url = 'https://api.airtable.com/v0'
 const posToken = ${{ secrets.API_TOKEN }}
 const posBaseId = 'appnP2hrGHs3uGTQ1'
 const posTableId = 'tblfb53l2JHHJODli'
-
 const posUrl = `${url}/${posBaseId}/${posTableId}?view=Grid%20view`
-// const authId = 'pateA4L3xnSSOe4vA.bf1740e2c54cc959c127a7267825aef5170a77a135bd4048f567712612b0cdb2'
 
 function createElTag(tagName, tagClass, tagText) {
     const myElement = document.createElement(tagName)
