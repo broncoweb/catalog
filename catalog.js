@@ -78,6 +78,7 @@ function buildItem(item, wrapper){
     
     const resourceItem = createElTag('div','resource-item','')
     resourceItem.setAttribute('fs-cms-element','item')
+    const resourceCard = createElTag('div','resource-card','')
     const resourceCardContent = createElTag('div','resource-card-content-main pos-item','')
     const resourceTopWrap = createElTag('div','resource-card-content_top','')
     const resourceImgWrap = createElTag('div','resource-image-wrapper','')
@@ -105,7 +106,8 @@ function buildItem(item, wrapper){
     const addBtn = createElTag('button','resource-card_add-btn','+')
     addBtn.setAttribute('aria-label',`Add ${name} to cart form`)
     resourceCardContent.append(resourceTopWrap,resourceBottomWrap,addBtn)
-    resourceItem.append(resourceCardContent)
+    resourceCard.append(resourceCardContent)
+    resourceItem.append(resourceCard)
     
     wrapper.append(resourceItem)
 }
