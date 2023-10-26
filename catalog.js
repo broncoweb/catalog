@@ -130,4 +130,4 @@ const initializeClassic = async () => {
     }
 }
 
-export { initializeBronco, initializeClassic }
+initializeClassic()
