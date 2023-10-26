@@ -68,6 +68,18 @@ async function getAirtable(){
             resultArr.push(record)
         }
     }
+
+    resultArr.sort((a,b) => {
+        const nameA = a.fields.name.toUpperCase()
+        const nameB = b.fields.name.toUpperCase()
+        
+        if (nameA < nameB) {
+            return -1;
+        }
+        if (nameA > nameB) {
+            return 1;
+        }
+    })
     
     return resultArr
 }
@@ -77,7 +89,8 @@ function buildItem(item, wrapper){
     const src = item.fields.image[0].url
     
     const resourceItem = createElTag('div','resource-item','')
-    resourceItem.setAttribute('fs-cms-element','Item')
+    resourceItem.setAttribute('fs-cms-element','item')
+    resourceItem.setAttribute('w-el-list-display','block')
     const resourceCard = createElTag('div','resource-card','')
     const resourceCardContent = createElTag('div','resource-card-content-main pos-item','')
     const resourceTopWrap = createElTag('div','resource-card-content_top','')
@@ -94,12 +107,14 @@ function buildItem(item, wrapper){
     resourceImgWrap.append(img,imgTextWrapper)
     const title = createElTag('p','resource-title',name)
     title.setAttribute('fs-cmsfilter-field','Title')
+    title.setAttribute('w-el-text','Title')
     resourceTopWrap.append(resourceImgWrap,title)
     const resourceBottomWrap = createElTag('div','resource-card-content_bottom','')
     const resourceInfoWrap = createElTag('div','resource-info-wrapper','')
     const resourceTypeWrap = createElTag('div','resource_type-wrapper pos-type')
     const resourceType = createElTag('p','resource-type',type)
     resourceType.setAttribute('fs-cmsfilter-field','Type')
+    resourceType.setAttribute('w-el-text','Type')
     resourceTypeWrap.append(resourceType)
     const resourceInvWrap = createElTag('div','resource_type-wrapper','')
     const inv = createElTag('p','resource-type',`${inventory} Left`)
@@ -107,6 +122,7 @@ function buildItem(item, wrapper){
     resourceInfoWrap.append(resourceTypeWrap,resourceInvWrap)
     const resourceNum = createElTag('p','resource-number',number)
     resourceNum.setAttribute('fs-cmsfilter-field','Number')
+    resourceNum.setAttribute('w-el-text',number)
     resourceBottomWrap.append(resourceInfoWrap,resourceNum)
     const addBtn = createElTag('button','resource-card_add-btn w-button','+')
     addBtn.setAttribute('aria-label',`Add ${name} to cart form`)
