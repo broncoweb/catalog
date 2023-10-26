@@ -103,7 +103,7 @@ function buildItem(item, wrapper){
     const resourceNum = createElTag('p','resource-number',number)
     resourceNum.setAttribute('fs-cmsfilter-field','number')
     resourceBottomWrap.append(resourceInfoWrap,resourceNum)
-    const addBtn = createElTag('button','resource-card_add-btn','+')
+    const addBtn = createElTag('button','resource-card_add-btn w-button','+')
     addBtn.setAttribute('aria-label',`Add ${name} to cart form`)
     resourceCardContent.append(resourceTopWrap,resourceBottomWrap,addBtn)
     resourceCard.append(resourceCardContent)
