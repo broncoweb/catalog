@@ -89,6 +89,7 @@ function buildItem(item, wrapper){
     const src = item.fields.image[0].url
     
     const resourceItem = createElTag('div','resource-item','')
+    resourceItem.id = number
     resourceItem.setAttribute('fs-cms-element','item')
     resourceItem.setAttribute('w-el-list-display','block')
     const resourceCard = createElTag('div','resource-card','')
@@ -97,7 +98,7 @@ function buildItem(item, wrapper){
     const resourceImgWrap = createElTag('div','resource-image-wrapper','')
     const img = createImgTag('resource-image',name,src)
     const imgTextWrapper = createElTag('div','resource-image-text-wrapper','')
-    const noImgText = createElTag('p','resource-image-message','No Image to Display')
+    const noImgText = createElTag('div','resource-image-message','No Image to Display')
     if(src){
         imgTextWrapper.classList.add('display-none')
     } else {
@@ -105,22 +106,22 @@ function buildItem(item, wrapper){
     }
     imgTextWrapper.append(noImgText)
     resourceImgWrap.append(img,imgTextWrapper)
-    const title = createElTag('p','resource-title',name)
+    const title = createElTag('div','resource-title',name)
     title.setAttribute('fs-cmsfilter-field','Title')
     title.setAttribute('w-el-text','Title')
     resourceTopWrap.append(resourceImgWrap,title)
     const resourceBottomWrap = createElTag('div','resource-card-content_bottom','')
     const resourceInfoWrap = createElTag('div','resource-info-wrapper','')
     const resourceTypeWrap = createElTag('div','resource_type-wrapper pos-type')
-    const resourceType = createElTag('p','resource-type',type)
+    const resourceType = createElTag('div','resource-type',type)
     resourceType.setAttribute('fs-cmsfilter-field','Type')
     resourceType.setAttribute('w-el-text','Type')
     resourceTypeWrap.append(resourceType)
     const resourceInvWrap = createElTag('div','resource_type-wrapper','')
-    const inv = createElTag('p','resource-type',`${inventory} Left`)
+    const inv = createElTag('div','resource-type',`${inventory} Left`)
     resourceInvWrap.append(inv)
     resourceInfoWrap.append(resourceTypeWrap,resourceInvWrap)
-    const resourceNum = createElTag('p','resource-number',number)
+    const resourceNum = createElTag('div','resource-number',number)
     resourceNum.setAttribute('fs-cmsfilter-field','Number')
     resourceNum.setAttribute('w-el-text',number)
     resourceBottomWrap.append(resourceInfoWrap,resourceNum)
