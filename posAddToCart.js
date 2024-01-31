@@ -143,7 +143,7 @@ setTimeout(function(){
     for(let btn of resourceAddBtns) {
         btn.addEventListener('click', addToCart)
     };
-},2000);
+},700);
 
 formMain.addEventListener('submit', function(e){
     setTimeout(function(){
