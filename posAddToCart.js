@@ -16,7 +16,7 @@ orderNum.setAttribute('type','hidden');
 orderNum.value = uuid;
 successNum.textContent = uuid;
 
-document.addEventListener('click', function(e){
+document.addEventListener('click', (e) => {
     let target = e.target;
     do {
         if (target === formBtn){
@@ -82,7 +82,7 @@ const renderCart = () => {
             titleP.value = item.name;
             titleDiv.append(titleP);
             
-            const inventoryDiv = createElTag('div', 'pos-form_content-inventory', '')
+            const inventoryDiv = createElTag('div', 'pos-form_content-inventory', '');
             const inventoryInput = createElTag('input','w-input pos-form_input inventory-input','');
             inventoryInput.setAttribute('type','number');
             inventoryInput.setAttribute('data-name',`item${itemNumber}-qty`);
@@ -92,7 +92,7 @@ const renderCart = () => {
             inventoryInput.required = true;
             inventoryInput.value = item.inventory;
             inventoryInput.addEventListener('change',updateCart);
-            inventoryDiv.append(inventoryInput)
+            inventoryDiv.append(inventoryInput);
 
             contentItem.append(numDiv,titleDiv,inventoryDiv);
             formContent.append(contentItem);
@@ -137,16 +137,16 @@ const addToCart = (e) => {
 
 renderCart();
 
-setTimeout(function(){
+setTimeout(() => {
     const resourceAddBtns = document.querySelectorAll('.resource-card_add-btn');
     submitBtn.setAttribute('disabled','');
     for(let btn of resourceAddBtns) {
-        btn.addEventListener('click', addToCart)
+        btn.addEventListener('click', addToCart);
     };
 },1400);
 
-formMain.addEventListener('submit', function(e){
-    setTimeout(function(){
+formMain.addEventListener('submit', (e) => {
+    setTimeout(() => {
         const inputs = e.target.querySelectorAll('input');
         for(let input of inputs){
             input.value = '';
