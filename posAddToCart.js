@@ -137,13 +137,21 @@ const addToCart = (e) => {
 
 renderCart();
 
-setTimeout(() => {
-    const resourceAddBtns = document.querySelectorAll('.resource-card_add-btn');
-    submitBtn.setAttribute('disabled','');
-    for(let btn of resourceAddBtns) {
-        btn.addEventListener('click', addToCart);
-    };
-},1400);
+const delay = () => {
+    setTimeout(() => {
+        const resourceAddBtns = document.querySelectorAll('.resource-card_add-btn');
+        submitBtn.setAttribute('disabled','');
+        for(let btn of resourceAddBtns) {
+            btn.addEventListener('click', addToCart);
+        };
+    },1400);
+};
+
+if(document.readyState == 'complete') {
+    delay();
+} else {
+    document.onreadystatechange = () => delay();
+}
 
 formMain.addEventListener('submit', (e) => {
     setTimeout(() => {
