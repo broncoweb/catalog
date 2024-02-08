@@ -1,3 +1,4 @@
+/* Variables */
 const formContent = document.getElementById('form_content');
 const formWrapper = document.getElementById('pos-form-container');
 const formMain = document.getElementById('pos-form');
@@ -7,15 +8,16 @@ const orderNum = document.getElementById('order-input');
 const successNum = document.getElementById('order-number');
 const formArr = [];
 const cartNumEl = document.getElementById('item-count');
-
 const toggleForm = () => formWrapper.classList.toggle('form-open');
 const hideForm = () => formWrapper.classList.remove('form-open');
 const uuid = self.crypto.randomUUID();
 
+/* Order Number Info */
 orderNum.setAttribute('type','hidden');
 orderNum.value = uuid;
 successNum.textContent = uuid;
 
+/* Event Listener for Opening/Closing Form */
 document.addEventListener('click', (e) => {
     let target = e.target;
     do {
@@ -31,17 +33,16 @@ document.addEventListener('click', (e) => {
     hideForm();
 });
 
-function createElTag(tagName, tagClass, tagText) {
+/* Function Declarations */
+const createElTag = (tagName, tagClass, tagText) => {
     const myElement = document.createElement(tagName);
     myElement.classList = tagClass;
     myElement.textContent = tagText;
     return myElement;
 };
-
-function clearArr (arr) {
+const clearArr = (arr) => {
     arr.splice(0, arr.length);
 };
-
 const updateCart = (e) => {
     const value = e.target.value;
     const id = e.target.getAttribute('id');
@@ -56,7 +57,6 @@ const updateCart = (e) => {
         renderCart();
     };
 };
-
 const renderCart = () => {
     let inventoryAmount = 0;
     
@@ -104,7 +104,6 @@ const renderCart = () => {
     };
     cartNumEl.textContent = inventoryAmount;
 };
-
 const addToCart = (e) => {
     const parent = e.target.parentElement;
     const title = parent.querySelector('.resource-title').textContent;
@@ -132,20 +131,20 @@ const addToCart = (e) => {
         formArr.push(object);
         renderCart();
     };
-    
 };
-
-renderCart();
-
 const delay = () => {
     setTimeout(() => {
         const resourceAddBtns = document.querySelectorAll('.resource-card_add-btn');
         submitBtn.setAttribute('disabled','');
         for(let btn of resourceAddBtns) {
+            // Adds Event Listener to 'Plus' Buttons and unhides them
+            btn.classList.remove('display-none');
             btn.addEventListener('click', addToCart);
         };
     },1400);
 };
+
+/* Initialization */
 
 if(document.readyState == 'complete') {
     delay();
@@ -153,6 +152,10 @@ if(document.readyState == 'complete') {
     document.onreadystatechange = () => delay();
 }
 
+// clears cart
+renderCart();
+
+// Event Listener for Clearing Out Form
 formMain.addEventListener('submit', (e) => {
     setTimeout(() => {
         const inputs = e.target.querySelectorAll('input');
