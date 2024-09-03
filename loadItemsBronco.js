@@ -46,4 +46,4 @@ async function initialize(company) {
     }
 }
 
-loadItems("bronco")
+initialize("bronco")
