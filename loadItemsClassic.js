@@ -19,6 +19,7 @@ async function loadItems(company) {
                 const title = clone.querySelector('.resource-title')
                 const cardType = clone.querySelectorAll('.resource-type')[0]
                 const cardInventory = clone.querySelectorAll('.resource-type')[1]
+                const cardNumber = clone.querySelector('.resource-number')
                 if(image_url){
                     clone.querySelector('.resource-image-text-wrapper').style.display = "none"
                     img.src = image_url
@@ -27,7 +28,8 @@ async function loadItems(company) {
                 }
                 title.textContent = name
                 cardType.textContent = type
-                cardInventory.textContent = `${inventory} Left`
+                cardInventory.textContent = inventory
+                cardNumber.textContent = number
                 wrapper.append(clone)
             }
         }
