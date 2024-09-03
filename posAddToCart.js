@@ -108,7 +108,7 @@ const addToCart = (e) => {
     const parent = e.target.parentElement;
     const title = parent.querySelector('.resource-title').textContent;
     const posNum = parent.querySelector('.resource-number').textContent;
-    const maxInventory = parent.querySelector('[wized="inventory_number"]').textContent || parent.querySelectorAll('.resource-type')[1].textContent;
+    const maxInventory = parent.querySelector('[wized="inventory_number"]') ? parent.querySelector('[wized="inventory_number"]').textContent : parent.querySelectorAll('.resource-type')[1].textContent;
     
     const object = {
         name: title,
