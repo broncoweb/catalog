@@ -19,6 +19,7 @@ async function initialize(company) {
                 const title = clone.querySelector('.resource-title')
                 const cardType = clone.querySelectorAll('.resource-type')[0]
                 const cardInventory = clone.querySelectorAll('.resource-type')[1]
+                const cardNumber = clone.querySelector('.resource-number')
                 if(image_url){
                     clone.querySelector('.resource-image-text-wrapper').style.display = "none"
                     img.src = image_url
@@ -26,8 +27,12 @@ async function initialize(company) {
                     img.style.display = "none"
                 }
                 title.textContent = name
+                title.setAttribute('fs-cmsfilter-field','title')
                 cardType.textContent = type
-                cardInventory.textContent = `${inventory} Left`
+                cardType.setAttribute('fs-cmsfilter-field','type')
+                cardInventory.textContent = inventory
+                cardNumber.textContent = number
+                cardNumber.setAttribute('fs-cmsfilter-field','number')
                 wrapper.append(clone)
             }
         }
