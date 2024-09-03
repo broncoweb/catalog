@@ -33,4 +33,5 @@ async function loadItems(company) {
         }
     }
 }
-export default loadItems
+
+loadItems("bronco")
