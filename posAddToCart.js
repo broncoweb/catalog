@@ -121,8 +121,7 @@ const addToCart = (e) => {
         const thisObject = formArr.filter((item) => item.number === object.number)[0];
         
         if (thisObject){
-            console.log(thisObject.inventory, thisObject.max)
-            thisObject.inventory ++;
+            if(thisObject.inventory < Number(thisObject.max)) thisObject.inventory ++;
             renderCart();
         } else {
             formArr.push(object);
