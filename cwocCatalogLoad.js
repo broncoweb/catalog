@@ -18,7 +18,7 @@ const fetchItems = async (company) => {
         const res = await fetch(`https://x8ki-letl-twmt.n7.xano.io/api:ttv96NIU/items?company=${company}`)
         const data = await res.json()
 
-        return data
+        return data.filter(item => item.inventory > 0)
     } catch(error) {
         return []
     }

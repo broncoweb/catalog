@@ -9,9 +9,7 @@ window.fsAttributes.push(['cmsload', async (listInstances) => {
     const cards = await fetchItems("bronco") //grabs data from external api
     listInstance.clearItems() //removes placeholder items
 
-    const newItems = cards.map((card) => {
-        if(card.inventory > 0) return newItem(card, itemTemplate)
-    })
+    const newItems = cards.map((card) => newItem(card, itemTemplate))
     await listInstance.addItems(newItems)
 }])
 
@@ -20,7 +18,7 @@ const fetchItems = async (company) => {
         const res = await fetch(`https://x8ki-letl-twmt.n7.xano.io/api:ttv96NIU/items?company=${company}`)
         const data = await res.json()
 
-        return data
+        return data.filter(item => item.inventory > 0)
     } catch(error) {
         return []
     }
