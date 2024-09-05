@@ -49,5 +49,5 @@ const newItem = (item, template) => {
         if(cardNumber) cardNumber.textContent = number
     
         return clone
-    }
+    } else null
 }
