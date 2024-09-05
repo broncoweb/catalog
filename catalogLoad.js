@@ -10,7 +10,7 @@ window.fsAttributes.push(['cmsload', async (listInstances) => {
     listInstance.clearItems() //removes placeholder items
 
     const newItems = cards.map((card) => {
-        if(card.inventory > 0) newItem(card, itemTemplate)
+        if(card.inventory > 0) return newItem(card, itemTemplate)
     })
     await listInstance.addItems(newItems)
 }])
