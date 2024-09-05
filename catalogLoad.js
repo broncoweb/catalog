@@ -47,5 +47,5 @@ const newItem = (item, template) => {
     if(cardInventory) cardInventory.textContent = inventory
     if(cardNumber) cardNumber.textContent = number
 
-    return newItem
+    return clone
 }
