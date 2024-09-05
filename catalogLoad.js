@@ -6,16 +6,16 @@ window.fsAttributes.push(['cmsload', async (listInstances) => {
     const [item] = listInstance.items //defines single item from reference list
     const itemTemplate = item.element //defines template using single item
 		
-    const cards = await fetchItems() //grabs data from external api
+    const cards = await fetchItems("bronco") //grabs data from external api
     listInstance.clearItems() //removes placeholder items
 
     const newItems = cards.map((card) => newItem(card, itemTemplate))
     await listInstance.addItems(newItems)
 }])
 
-const fetchItems = async () => {
+const fetchItems = async (company) => {
     try {
-        const res = await fetch('https://x8ki-letl-twmt.n7.xano.io/api:ttv96NIU/items?company=bronco')
+        const res = await fetch(`https://x8ki-letl-twmt.n7.xano.io/api:ttv96NIU/items?company=${company}`)
         const data = await res.json()
 
         return data
