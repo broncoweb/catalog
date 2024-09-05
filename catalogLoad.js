@@ -9,7 +9,7 @@ window.fsAttributes.push(['cmsload', async (listInstances) => {
     const cards = await fetchItems("bronco") //grabs data from external api
     listInstance.clearItems() //removes placeholder items
 
-    const newItems = cards.map((card) => newItem(card, itemTemplate))
+    const newItems = cards.map((card) => card.inventory > 0 ? newItem(card, itemTemplate) : null)
     await listInstance.addItems(newItems)
 }])
 
@@ -26,28 +26,26 @@ const fetchItems = async (company) => {
 
 const newItem = (item, template) => {
     const { image_url, name, number, inventory, type } = item
-    if(inventory > 0){
-        const clone = template.cloneNode(true)
-        const img = clone.querySelector('[data-element="image"]')
-        const title = clone.querySelector('[data-element="title"]')
-        const cardType = clone.querySelector('[data-element="type"]')
-        const cardInventory = clone.querySelector('[data-element="inventory"]')
-        const cardNumber = clone.querySelector('[data-element="number"]')
-    
-        if(image_url){
-            if(img) {
-                clone.querySelector('[data-element="no-image"]').classList.add('display-none')
-                img.src = image_url
-            }
-        } else {
-            if(img) img.classList.add('display-none')
+    const clone = template.cloneNode(true)
+    const img = clone.querySelector('[data-element="image"]')
+    const title = clone.querySelector('[data-element="title"]')
+    const cardType = clone.querySelector('[data-element="type"]')
+    const cardInventory = clone.querySelector('[data-element="inventory"]')
+    const cardNumber = clone.querySelector('[data-element="number"]')
+
+    if(image_url){
+        if(img) {
+            clone.querySelector('[data-element="no-image"]').classList.add('display-none')
+            img.src = image_url
         }
-        
-        if(title) title.textContent = name
-        if(cardType) cardType.textContent = type
-        if(cardInventory) cardInventory.textContent = inventory
-        if(cardNumber) cardNumber.textContent = number
+    } else {
+        if(img) img.classList.add('display-none')
+    }
     
-        return clone
-    } else null
+    if(title) title.textContent = name
+    if(cardType) cardType.textContent = type
+    if(cardInventory) cardInventory.textContent = inventory
+    if(cardNumber) cardNumber.textContent = number
+
+    return clone
 }
