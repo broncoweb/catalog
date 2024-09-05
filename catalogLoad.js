@@ -9,7 +9,9 @@ window.fsAttributes.push(['cmsload', async (listInstances) => {
     const cards = await fetchItems("bronco") //grabs data from external api
     listInstance.clearItems() //removes placeholder items
 
-    const newItems = cards.map((card) => card.inventory > 0 ? newItem(card, itemTemplate) : null)
+    const newItems = cards.map((card) => {
+        if(card.inventory > 0) newItem(card, itemTemplate)
+    })
     await listInstance.addItems(newItems)
 }])
 
