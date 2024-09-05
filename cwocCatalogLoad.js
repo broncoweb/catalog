@@ -26,30 +26,26 @@ const fetchItems = async (company) => {
 
 const newItem = (item, template) => {
     const { image_url, name, number, inventory, type } = item
-    if(inventory > 0){
-        const clone = template.cloneNode(true)
-        const img = clone.querySelector('[data-element="image"]')
-        const title = clone.querySelector('[data-element="title"]')
-        const cardType = clone.querySelector('[data-element="type"]')
-        const cardInventory = clone.querySelector('[data-element="inventory"]')
-        const cardNumber = clone.querySelector('[data-element="number"]')
-    
-        if(image_url){
-            if(img) {
-                clone.querySelector('[data-element="no-image"]').classList.add('display-none')
-                img.src = image_url
-            }
-        } else {
-            if(img) img.classList.add('display-none')
+    const clone = template.cloneNode(true)
+    const img = clone.querySelector('[data-element="image"]')
+    const title = clone.querySelector('[data-element="title"]')
+    const cardType = clone.querySelector('[data-element="type"]')
+    const cardInventory = clone.querySelector('[data-element="inventory"]')
+    const cardNumber = clone.querySelector('[data-element="number"]')
+
+    if(image_url){
+        if(img) {
+            clone.querySelector('[data-element="no-image"]').classList.add('display-none')
+            img.src = image_url
         }
-        
-        if(title) title.textContent = name
-        if(cardType) cardType.textContent = type
-        if(cardInventory) cardInventory.textContent = inventory
-        if(cardNumber) cardNumber.textContent = number
-    
-        return clone
     } else {
-        return null
+        if(img) img.classList.add('display-none')
     }
+    
+    if(title) title.textContent = name
+    if(cardType) cardType.textContent = type
+    if(cardInventory) cardInventory.textContent = inventory
+    if(cardNumber) cardNumber.textContent = number
+
+    return clone
 }
