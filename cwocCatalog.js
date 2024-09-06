@@ -2,7 +2,6 @@
     Variables 
         */
 
-const formContent = document.getElementById('form_content')
 const formWrapper = document.getElementById('pos-form-container')
 const formMain = document.getElementById('pos-form')
 const formBtn = document.getElementById('form-btn')
@@ -99,8 +98,9 @@ const updateCart = (e) => {
 // render cart function
 const renderCart = () => {
     let inventoryAmount = 0
-    
-    formContent.innerHTML = ''
+    const formContent = document.getElementById('form_content')
+
+    if(formContent) formContent.innerHTML = ''
     if (formArr.length > 0) {
         submitBtn.removeAttribute('disabled')
         for(let [index, item] of formArr.entries()){
