@@ -10,8 +10,6 @@ const orderNum = document.getElementById('order-input')
 const successNum = document.getElementById('order-number')
 const formArr = []
 const cartNumEl = document.getElementById('item-count')
-const toggleForm = () => formWrapper.classList.toggle('form-open')
-const hideForm = () => formWrapper.classList.remove('form-open')
 const uuid = self.crypto.randomUUID()
 
 /*
@@ -65,6 +63,9 @@ document.addEventListener('click', (e) => {
 /* 
     Function Declarations 
         */
+
+const toggleForm = () => formWrapper.classList.toggle('form-open') // toggles form
+const hideForm = () => formWrapper.classList.remove('form-open') // hides form
 
 // general purpose create element function
 const createElTag = (tagName, tagClass, tagText) => {
