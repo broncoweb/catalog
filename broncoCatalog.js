@@ -33,9 +33,10 @@ const uuid = self.crypto.randomUUID()
 /* 
     Order Number Info 
         */
-
-orderNum.setAttribute('type','hidden')
-orderNum.value = uuid
+if(orderNum){
+    orderNum.setAttribute('type','hidden')
+    orderNum.value = uuid
+}
 successNum.textContent = uuid
 
 /* 
@@ -126,7 +127,7 @@ const renderCart = () => {
 
             contentItem.append(numDiv,titleDiv,inventoryDiv)
             formContent.append(contentItem)
-            inventoryAmount += item.inventory
+            inventoryAmount += Number(item.inventory)
         }
     } else {
         submitBtn.setAttribute('disabled','')
