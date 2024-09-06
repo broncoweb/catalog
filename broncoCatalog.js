@@ -41,8 +41,8 @@
     if(orderNum) {
         orderNum.setAttribute('type','hidden')
         orderNum.value = uuid
+        successNum.textContent = uuid
     }
-    successNum.textContent = uuid
     
     /* 
         Event Listener for Opening/Closing Form 
