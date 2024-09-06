@@ -1,18 +1,3 @@
-window.fsAttributes = window.fsAttributes || []
-window.fsAttributes.push(['cmsload', async (listInstances) => {
-    console.log('cmsload Successfully loaded!')
-
-    const [listInstance] = listInstances //defines cms list being used
-    const [item] = listInstance.items //defines single item from reference list
-    const itemTemplate = item.element //defines template using single item
-		
-    const cards = await fetchItems("classic") //grabs data from external api
-    listInstance.clearItems() //removes placeholder items
-
-    const newItems = cards.map((card) => newItem(card, itemTemplate)) //creates new items using template and api data
-    await listInstance.addItems(newItems) //adds new items to wrapper
-}])
-
 /* 
     Variables 
         */
@@ -29,6 +14,25 @@ const cartNumEl = document.getElementById('item-count')
 const toggleForm = () => formWrapper.classList.toggle('form-open')
 const hideForm = () => formWrapper.classList.remove('form-open')
 const uuid = self.crypto.randomUUID()
+
+/*
+    Attributes API CMSLoad Script
+         */
+
+window.fsAttributes = window.fsAttributes || []
+window.fsAttributes.push(['cmsload', async (listInstances) => {
+    console.log('cmsload Successfully loaded!')
+
+    const [listInstance] = listInstances //defines cms list being used
+    const [item] = listInstance.items //defines single item from reference list
+    const itemTemplate = item.element //defines template using single item
+		
+    const cards = await fetchItems("classic") //grabs data from external api
+    listInstance.clearItems() //removes placeholder items
+
+    const newItems = cards.map((card) => newItem(card, itemTemplate)) //creates new items using template and api data
+    await listInstance.addItems(newItems) //adds new items to wrapper
+}])
 
 /* 
     Order Number Info 
@@ -63,6 +67,7 @@ document.addEventListener('click', (e) => {
     Function Declarations 
         */
 
+// general purpose create element function
 const createElTag = (tagName, tagClass, tagText) => {
     const myElement = document.createElement(tagName)
     myElement.classList = tagClass
@@ -70,10 +75,12 @@ const createElTag = (tagName, tagClass, tagText) => {
     return myElement
 }
 
+// clear array function
 const clearArr = (arr) => {
     arr.splice(0, arr.length)
 }
 
+// update cart function
 const updateCart = (e) => {
     const value = e.target.value
     const id = e.target.getAttribute('id')
@@ -89,6 +96,7 @@ const updateCart = (e) => {
     }
 }
 
+// render cart function
 const renderCart = () => {
     let inventoryAmount = 0
     
@@ -137,6 +145,7 @@ const renderCart = () => {
     cartNumEl.textContent = inventoryAmount
 }
 
+// add item to cart function
 const addToCart = (e) => {
     const parent = e.target.parentElement
     const title = parent.querySelector('.resource-title').textContent
@@ -166,6 +175,7 @@ const addToCart = (e) => {
     }
 }
 
+// fetch items from catalog api function
 const fetchItems = async (company) => {
     try {
         const res = await fetch(`https://x8ki-letl-twmt.n7.xano.io/api:ttv96NIU/items?company=${company}`)
@@ -177,6 +187,7 @@ const fetchItems = async (company) => {
     }
 }
 
+// create pos items builder function
 const newItem = (item, template) => {
     const { image_url, name, number, inventory, type } = item
     const clone = template.cloneNode(true)
@@ -189,11 +200,11 @@ const newItem = (item, template) => {
 
     if(image_url){
         if(img) {
-            clone.querySelector('[data-element="no-image"]').classList.add('display-none')
             img.src = image_url
         }
     } else {
         if(img) img.classList.add('display-none')
+        clone.querySelector('[data-element="no-image"]').classList.toggle('display-none')
     }
     
     if(title) title.textContent = name
@@ -207,25 +218,6 @@ const newItem = (item, template) => {
 
     return clone
 }
-// const delay = () => {
-//     setTimeout(() => {
-//         const resourceAddBtns = document.querySelectorAll('[data-element="add-btn"]')
-//         submitBtn.setAttribute('disabled','')
-//         for(let btn of resourceAddBtns) {
-//             // Adds Event Listener to 'Plus' Buttons and unhides them
-//             btn.classList.remove('display-none')
-//             btn.addEventListener('click', addToCart)
-//         }
-//     },1400)
-// }
-
-// /* Initialization */
-
-// if(document.readyState == 'complete') {
-//     delay()
-// } else {
-//     document.onreadystatechange = () => delay()
-// }
 
 // clears cart
 renderCart()
