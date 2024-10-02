@@ -190,15 +190,20 @@
     
     // create pos items builder function
     const newItem = (item, template) => {
-        const { image_url, name, number, inventory, type } = item
+        const { image_url, webp_url, name, number, inventory, type } = item
         const clone = template.cloneNode(true)
+        const source = clone.querySelector('[data-picture="source"]')
         const img = clone.querySelector('[data-element="image"]')
         const title = clone.querySelector('[data-element="title"]')
         const cardType = clone.querySelector('[data-element="type"]')
         const cardInventory = clone.querySelector('[data-element="inventory"]')
         const cardNumber = clone.querySelector('[data-element="number"]')
         const addBtn = clone.querySelector('[data-element="add-btn"]')
-    
+        
+        if(webp_url){
+            source.srcset = webp_url
+        }
+
         if(image_url){
             if(img) {
                 img.src = image_url
