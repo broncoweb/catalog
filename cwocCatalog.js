@@ -190,7 +190,7 @@ const fetchItems = async (company) => {
 
 // create pos items builder function
 const newItem = (item, template) => {
-    const { image_url, name, number, inventory, type } = item
+    const { image_url, webp_url, name, number, inventory, type } = item
     const clone = template.cloneNode(true)
     const source = clone.querySelector('[data-element="source"]')
     const img = clone.querySelector('[data-element="image"]')
