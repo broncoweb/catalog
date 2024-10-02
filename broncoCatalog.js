@@ -192,7 +192,7 @@
     const newItem = (item, template) => {
         const { image_url, webp_url, name, number, inventory, type } = item
         const clone = template.cloneNode(true)
-        const picture = clone.querySelector('[data-picture="picture"]') || null
+        const source = clone.querySelector('[data-picture="source"]') || null
         const img = clone.querySelector('[data-element="image"]') || null
         const title = clone.querySelector('[data-element="title"]')
         const cardType = clone.querySelector('[data-element="type"]')
@@ -201,10 +201,7 @@
         const addBtn = clone.querySelector('[data-element="add-btn"]')
         
         if(webp_url){
-            if(picture){
-                const source = picture.querySelector('source')
-                source.srcset = webp_url
-            }
+            source.srcset = webp_url
         }
 
         if(image_url){
