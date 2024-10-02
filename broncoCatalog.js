@@ -192,6 +192,7 @@
     const newItem = (item, template) => {
         const { image_url, name, number, inventory, type } = item
         const clone = template.cloneNode(true)
+        const picture = clone.querySelector('[data-picture="picture"]')
         const img = clone.querySelector('[data-element="image"]')
         const title = clone.querySelector('[data-element="title"]')
         const cardType = clone.querySelector('[data-element="type"]')
