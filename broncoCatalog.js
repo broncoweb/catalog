@@ -201,7 +201,6 @@
         const addBtn = clone.querySelector('[data-element="add-btn"]')
         
         if(webp_url) source.srcset = webp_url
-
         if(image_url){
             if(img) {
                 img.src = image_url
@@ -210,7 +209,6 @@
             if(img) img.classList.add('display-none')
             clone.querySelector('[data-element="no-image"]').classList.toggle('display-none')
         }
-        
         if(title) title.textContent = name
         if(cardType) cardType.textContent = type
         if(cardInventory) cardInventory.textContent = inventory
