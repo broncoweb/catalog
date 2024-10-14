@@ -200,9 +200,7 @@
         const cardNumber = clone.querySelector('[data-element="number"]')
         const addBtn = clone.querySelector('[data-element="add-btn"]')
         
-        if(webp_url){
-            source.srcset = webp_url
-        }
+        if(webp_url) source.srcset = webp_url
 
         if(image_url){
             if(img) {
