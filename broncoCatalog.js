@@ -226,15 +226,18 @@
     
     // Event Listener for Clearing Out Form
     formMain.addEventListener('submit', (e) => {
-        setTimeout(() => {
-            const inputs = e.target.querySelectorAll('input')
-            for(let input of inputs){
-                input.value = ''
-            };
-            clearArr(formArr)
-            renderCart()
-            alert(`Thank you for your request, your order number is ${uuid}.`)
-        }, 600)
-    
-        setTimeout(hideForm, 10000)
+        const response = grecaptcha.getResponse()
+        if(response.length != 0) {
+            setTimeout(() => {
+                const inputs = e.target.querySelectorAll('input')
+                for(let input of inputs){
+                    input.value = ''
+                };
+                clearArr(formArr)
+                renderCart()
+                alert(`Thank you for your request, your order number is ${uuid}.`)
+            }, 600)
+        
+            setTimeout(hideForm, 10000)
+        }
     })
