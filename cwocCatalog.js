@@ -201,7 +201,7 @@ const newItem = (item, template) => {
     const addBtn = clone.querySelector('[data-element="add-btn"]')
 
     if(webp_url) source.srcset = webp_url
-    if(image_url){
+    if(image_url && !webp_url){
         if(img) {
             img.src = image_url
         }
