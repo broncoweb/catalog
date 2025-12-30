@@ -193,6 +193,7 @@ const newItem = (item, template) => {
     const { image_url, webp_url, name, number, inventory, type } = item
     const clone = template.cloneNode(true)
     const source = clone.querySelector('[data-element="source"]')
+    const picture = clone.querySelector('.resource-picture')
     const img = clone.querySelector('[data-element="image"]')
     const title = clone.querySelector('[data-element="title"]')
     const cardType = clone.querySelector('[data-element="type"]')
@@ -206,7 +207,7 @@ const newItem = (item, template) => {
             img.src = image_url
         }
     } else {
-        if(img) img.classList.add('display-none')
+        if(img) picture.classList.add('display-none')
         clone.querySelector('[data-element="no-image"]').classList.toggle('display-none')
     }
     if(title) title.textContent = name
